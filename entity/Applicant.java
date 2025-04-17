@@ -3,7 +3,8 @@ package entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import enums.*;
+import enums.UnitType;
+import enums.MaritalStatus;
 
 public class Applicant extends User {
     // Attributes
@@ -68,9 +69,12 @@ public class Applicant extends User {
         return this.application != null;
     }
 
-    // Overrides
     public void clearApplication() {
         this.application.getProject().getApplications().remove(this.application);
         this.application = null;
+    }
+
+    public void removeEnquiry(Enquiry enquiry) {
+        this.enquiries.remove(enquiry);
     }
 }

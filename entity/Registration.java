@@ -2,7 +2,8 @@ package entity;
 
 import java.io.Serializable;
 
-import enums.*;
+import shared.Data;
+import enums.Status;
 
 public class Registration implements Serializable {
     private Officer officer;
@@ -59,8 +60,15 @@ public class Registration implements Serializable {
         return true;
     }
 
+    public void deleteRegistration(Data data) {
+        this.officer.getRegistrations().remove(this);
+        this.project.getRegistrations().remove(this);
+        data.getRegistrationList().remove(this);
+    }
+ 
     @Override
     public String toString() {
-        return this.project.toString() + "\nRegistration Status : " + this.status;
+        return this.project.toString() + "\nOfficer:\n" + this.officer.toString() +
+                "\nRegistration Status : " + this.status;
     }
 }

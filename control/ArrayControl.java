@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import entity.*;
-import enums.*;
+import entity.Project;
+import entity.Unit;
+import enums.UnitType;
+import enums.MaritalStatus;
 
 public class ArrayControl {
     // Print project specific with / without additional info
@@ -13,7 +15,7 @@ public class ArrayControl {
         for (int i = 0; i < list.size(); i++) {
             System.out.println("-------------------------");
             System.out.println("(" + (i + 1) + ")");
-            System.err.println(list.get(i).toString(showAdditionalInfo));
+            System.out.println(list.get(i).toString(showAdditionalInfo));
         }
     }
 
@@ -22,7 +24,7 @@ public class ArrayControl {
         for (int i = 0; i < list.size(); i++) {
             System.out.println("-------------------------");
             System.out.println("(" + (i + 1) + ")");
-            System.err.println(list.get(i));
+            System.out.println(list.get(i));
         }
     }
 
@@ -35,14 +37,16 @@ public class ArrayControl {
 
         printFromList(list, showAdditionalInfo);
         System.out.print("(0): Cancel | (1 - " + list.size() + "): Select from list: ");
-        int selectedIndex = Math.abs(sc.nextInt());
-        sc.nextLine();
-        if (selectedIndex == 0)
-            return null;
-        if (selectedIndex > 0 && selectedIndex <= list.size())
-            return list.get(selectedIndex - 1);
-
-        System.out.println("Invalid input, please try again.");
+        try {
+            int selectedIndex = Integer.parseInt(sc.nextLine());
+            if (selectedIndex == 0)
+                return null;
+            if (selectedIndex > 0 && selectedIndex <= list.size())
+                return list.get(selectedIndex - 1);
+        } catch (NumberFormatException e) {
+            System.out.println("Please enter a valid input.");
+        }
+        System.out.println("Nothing selected.");
         return null;
     }
 
@@ -55,14 +59,16 @@ public class ArrayControl {
 
         printFromList(list);
         System.out.print("(0): Cancel | (1 - " + list.size() + "): Select from list: ");
-        int selectedIndex = Math.abs(sc.nextInt());
-        sc.nextLine();
-        if (selectedIndex == 0)
-            return null;
-        if (selectedIndex > 0 && selectedIndex <= list.size())
-            return list.get(selectedIndex - 1);
-
-        System.out.println("Invalid input, please try again.");
+        try {
+            int selectedIndex = Integer.parseInt(sc.nextLine());
+            if (selectedIndex == 0)
+                return null;
+            if (selectedIndex > 0 && selectedIndex <= list.size())
+                return list.get(selectedIndex - 1);
+        } catch (NumberFormatException e) {
+            System.out.println("Please enter a valid input.");
+        }
+        System.out.println("Nothing selected.");
         return null;
     }
 
@@ -74,5 +80,21 @@ public class ArrayControl {
             }
         }
         return selectFromList(unitTypes, sc);
+    }
+
+    public static UnitType selectUnitType(Scanner sc) {
+        List<UnitType> unitTypes = new ArrayList<>();
+        for (UnitType unitType : UnitType.values()) {
+            unitTypes.add(unitType);
+        }
+        return selectFromList(unitTypes, sc);
+    }
+
+    public static MaritalStatus selectMaritalStatus(Scanner sc) {
+        List<MaritalStatus> MaritalStatusTypes = new ArrayList<>();
+        for (MaritalStatus maritalStatus : MaritalStatus.values()) {
+            MaritalStatusTypes.add(maritalStatus);
+        }
+        return selectFromList(MaritalStatusTypes, sc);
     }
 }

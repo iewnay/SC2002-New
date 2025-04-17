@@ -9,6 +9,7 @@ import java.util.List;
 
 import enums.Status;
 import enums.UnitType;
+import shared.Data;
 
 public class Project implements Serializable {
     // Attributes
@@ -55,6 +56,10 @@ public class Project implements Serializable {
             return true;
         }
         return false; // if manager already exists, don't overtake (can change)
+    }
+
+    public List<FlatBooking> getBookings() {
+        return this.bookings;
     }
 
     public String getName() {
@@ -216,6 +221,16 @@ public class Project implements Serializable {
         return pending;
     }
 
+    public List<FlatBooking> getApprovedBookings() {
+        List<FlatBooking> approved = new ArrayList<>();
+        for (FlatBooking booking : this.bookings) {
+            if (booking.isBooked()) {
+                approved.add(booking);
+            }
+        }
+        return approved;
+    }
+
     // Default sort
     public static void sortProjects(List<Project> projects) {
         // Re-Sort projects
@@ -262,6 +277,31 @@ public class Project implements Serializable {
 
     public void toggleVisibility() {
         this.visibility = !visibility;
+    }
+
+    public void removeEnquiry(Enquiry enquiry) {
+        this.enquiries.remove(enquiry);
+    }
+
+
+    public void deleteProject(Data data) {
+        for (Registration registration : this.registrations) {
+            registration.deleteRegistration(data);
+        }
+        for (Officer officer : this.assignedOfficers) {
+            officer.getAssignedProjects().remove(this);
+        }
+        for (Application application: this.applications) {
+            application.deleteApplication(data);
+        }
+        for (FlatBooking booking: this.bookings) {
+            booking.deleteBooking(data);
+        }
+        for (Enquiry enquiry: this.enquiries) {
+            enquiry.deleteEnquiry(data);
+        }
+        this.manager.getProjects().remove(this);
+        data.getProjectList().remove(this);
     }
 
     @Override

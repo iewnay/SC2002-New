@@ -2,7 +2,7 @@ package entity;
 
 import java.io.Serializable;
 
-import enums.*;
+import enums.UnitType;
 
 public class Unit implements Serializable{
     // Attributes

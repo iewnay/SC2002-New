@@ -59,7 +59,7 @@ public class Manager extends User {
         currentProject.setName(name);
         currentProject.setNeighbourhood(neighbourhood);
         currentProject.setUnits(units);
-        currentProject.setApplicationOpenDate(applicationClosingDate);
+        currentProject.setApplicationOpenDate(applicationOpenDate);
         currentProject.setApplicationClosingDate(applicationClosingDate);
         return true;
     }

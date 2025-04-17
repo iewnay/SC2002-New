@@ -78,16 +78,27 @@ public abstract class User implements Serializable {
         }
     }
 
-    public boolean checkPassword(String password) {
-        return this.password.equals(password);
-    }
-
     public boolean isMarried() {
         return this.maritalStatus == MaritalStatus.Married;
     }
 
+    public void deleteAccount() {
+    }
+
     @Override
     public String toString() {
+        return toString(false);
+    }
+
+    public String toString(boolean showDetails) {
+        if (showDetails) {
+            String s = "";
+            s += "NRIC\t\t: " + this.NRIC.toUpperCase();
+            s += "\nName\t\t: " + this.name;
+            s += "\nAge\t\t: " + this.age;
+            s += "\nMarital Status\t: " + this.maritalStatus;
+            return s;
+        }
         return this.name;
     }
 }

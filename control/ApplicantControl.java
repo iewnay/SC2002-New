@@ -1,8 +1,15 @@
 package control;
 
 import shared.Data;
-import entity.*;
-import enums.*;
+import entity.Application;
+import entity.Applicant;
+import entity.Officer;
+import entity.Project;
+import entity.Enquiry;
+import entity.Withdrawal;
+import enums.Status;
+import enums.UnitType;
+import enums.MaritalStatus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +27,13 @@ public class ApplicantControl {
         }
         if (!canApply) {
             System.out.println("You already have an application. Withdraw to apply for a new project.");
+            System.out.println("------------------------------");
         } else {
+            System.out.println();
+            System.out.println("| Eligible Projects |");
+            System.out.println();
             Project selectedProject = ArrayControl.selectFromList(projects, sc);
+            System.out.println("------------------------------");
             if (selectedProject != null) {
                 // Option to select unit type only if married
                 UnitType selectedUnit;
@@ -30,7 +42,9 @@ public class ApplicantControl {
                 else
                     selectedUnit = UnitType.TWO_ROOM;
                 Application application = new Application(applicant, selectedProject, selectedUnit);
-                data.applicationList.add(application);
+                data.getApplicationList().add(application);
+                System.out.println("Successfully applied for project!");
+                System.out.println("------------------------------");
             }
         }
     }
@@ -38,7 +52,7 @@ public class ApplicantControl {
     public static List<Project> getApplicableProjects(Applicant applicant, Data data) {
         List<Project> applicableProjects = new ArrayList<>();
         boolean eligible = false;
-        for (Project project : data.projectList) {
+        for (Project project : data.getProjectList()) {
             if (project.getVisibility() && project.inDateRange())
                 // Further filter
                 if (applicant.isMarried())
@@ -71,8 +85,9 @@ public class ApplicantControl {
             System.out.println("Enquiry body (In one line):");
             String body = sc.nextLine();
             Enquiry enquiry = new Enquiry(applicant, selectedProject, header, body);
-            data.enquiryList.add(enquiry);
+            data.getEnquiryList().add(enquiry);
         }
+        System.out.println("------------------------------");
     }
 
     public static void editEnquiry(Applicant applicant, Scanner sc, Data data) {
@@ -86,9 +101,24 @@ public class ApplicantControl {
 
     public static void deleteEnquiry(Applicant applicant, Scanner sc, Data data) {
         Enquiry selectedEnquiry = ArrayControl.selectFromList(applicant.getEnquiries(), sc);
-        if (selectedEnquiry != null) { // TO DO
-            data.enquiryList.remove(selectedEnquiry);
-            // REMOVE LINKS
+        if (selectedEnquiry != null) {
+            selectedEnquiry.deleteEnquiry(data);
+            selectedEnquiry = null;
+            System.out.println("Enquiry deleted.");
         }
     }
+
+    public static void requestWithdrawal(Applicant applicant, Scanner sc, Data data) {
+        if (applicant.getApplication() != null) {
+            if (applicant.getApplication().getStatus() != Status.Booked) {
+                Withdrawal withdrawal = new Withdrawal(applicant.getApplication(), applicant);
+                data.getWithdrawals().add(withdrawal);
+            } else {
+                System.out.println("HDB already booked and approved!");
+            }
+        } else {
+            System.out.println("No application to withdraw from.");
+        }
+    }
+
 }

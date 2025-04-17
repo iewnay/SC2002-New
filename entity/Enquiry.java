@@ -1,5 +1,7 @@
 package entity;
 
+import shared.Data;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -52,6 +54,12 @@ public class Enquiry implements Serializable {
         if (!this.enquiryHeader.contains("Edited"))
             this.enquiryHeader += " (Edited)";
         this.enquiryText = text;
+    }
+
+    public void deleteEnquiry(Data data) {
+        this.applicant.removeEnquiry(this);
+        this.project.removeEnquiry(this);
+        data.getEnquiryList().remove(this);
     }
 
     @Override

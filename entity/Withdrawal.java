@@ -1,15 +1,17 @@
 package entity;
 
 import java.io.Serializable;
-import enums.*;
+import enums.Status;
 
 public class Withdrawal implements Serializable{
     private Application application;
+    private Applicant applicant;
     private Status status;
 
-    public Withdrawal(Application application) {
+    public Withdrawal(Application application, Applicant applicant) {
         this.application = application;
-        application.getApplicant().setWithdrawal(this);
+        this.applicant = applicant;
+        this.applicant.setWithdrawal(this);
         this.status = Status.Pending;
     }
 

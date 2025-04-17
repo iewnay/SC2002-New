@@ -2,7 +2,8 @@ package entity;
 
 import java.io.Serializable;
 
-import enums.*;
+import enums.UnitType;
+import shared.Data;
 
 public class FlatBooking implements Serializable {
     private Applicant applicant;
@@ -49,5 +50,16 @@ public class FlatBooking implements Serializable {
 
     public UnitType getUnitType() {
         return this.application.getUnitType();
+    }
+
+    public void deleteBooking(Data data) {
+        this.applicant.setBooking(null);
+        this.project.getBookings().remove(this);
+        data.getFlatBookings().remove(this);
+    }
+
+    @Override
+    public String toString() {
+        return this.application.toString();
     }
 }

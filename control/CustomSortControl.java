@@ -2,7 +2,7 @@ package control;
 
 import java.util.Scanner;
 
-import entity.*;
+import entity.User;
 
 public class CustomSortControl {
     public static <T extends User> void setFilter(T user, Scanner sc) {

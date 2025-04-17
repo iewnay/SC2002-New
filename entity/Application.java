@@ -4,8 +4,9 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import shared.*;
-import enums.*;
+import shared.Data;
+import enums.UnitType;
+import enums.Status;
 
 public class Application implements Serializable {
     // Attributes
@@ -57,7 +58,8 @@ public class Application implements Serializable {
 
     public void book(Data data) {
         FlatBooking booking = new FlatBooking(this);
-        data.flatBookings.add(booking);
+        data.getFlatBookings().add(booking);
+        this.project.getApplications().remove(this);
     }
 
     public static List<Application> filterPending(List<Application> applications) {
@@ -65,10 +67,18 @@ public class Application implements Serializable {
                 .collect(Collectors.toList());
     }
 
+    public void deleteApplication(Data data) {
+        this.applicant.clearApplication();
+        data.getApplicationList().remove(this);
+    }
+
     @Override
     public String toString() {
-        return "Applied Project:\n" +
+        String s = "";
+        s += "Applied Project:\n" +
                 project.toString(false) + "\n" +
                 "Current Status: " + status;
+        s += "\n\n" + applicant.toString(true);
+        return s;
     }
 }

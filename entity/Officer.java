@@ -1,6 +1,6 @@
 package entity;
 
-import enums.*;
+import enums.MaritalStatus;
 
 import java.util.ArrayList;
 import java.util.List;
