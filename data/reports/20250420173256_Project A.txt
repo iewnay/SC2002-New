@@ -1,0 +1,20 @@
+| Report for Project |
+Project Name		: Project A
+Neighbourhood		: Hougang
+2-Room Flats Available	: 34
+2-Room Selling Price	: $300000.0
+3-Room Flats Available	: 48
+3-Room Selling Price	: $450000.0
+Open Date:		: 2025-01-01
+Close Date:		: 2025-06-01
+Visibility		: true
+Officer Slots		: 9
+Assigned Officers	: [Officer A]
+Officer Registrations	: 0
+Applications		: 0
+Pending Bookings	: 0
+Successful Bookings	: 1
+Enquiries		: 0
+Unanswered Enquiries	: 0
+
+No applications.

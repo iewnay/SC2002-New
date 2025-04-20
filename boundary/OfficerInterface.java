@@ -142,6 +142,7 @@ public class OfficerInterface {
                             project.decrementUnits(selectedBooking.getUnitType());
                             System.out.println("Confirmed booking for " + selectedBooking.getApplicant());
                             selectedBooking.getApplication().setStatus(Status.Booked);
+                            selectedBooking.setBooked(true);
                             selectedBooking.getApplicant().setUnitType(selectedBooking.getUnitType());
                         }
                     }

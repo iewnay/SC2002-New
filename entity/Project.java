@@ -331,8 +331,6 @@ public class Project implements Serializable {
             sb.append("Successful Bookings\t: ").append(getSuccessfulBookings().size()).append("\n");
             sb.append("Enquiries\t\t: ").append(this.enquiries.size()).append("\n");
             sb.append("Unanswered Enquiries\t: ").append(getUnansweredEnquiries().size()).append("\n");
-            sb.append("Bookings\t\t: ").append(this.bookings.size()).append("\n");
-            sb.append("Pending Bookings\t: ").append(getPendingBookings().size()).append("\n");
         }
         return sb.toString();
     }

@@ -212,12 +212,12 @@ public class ManagerInterface {
             int choice = Integer.parseInt(sc.nextLine());
             switch (choice) {
                 case 1:
-                    selectedWithdrawal.approve();
+                    selectedWithdrawal.approve(data);
                     System.out.println("Withdrawal request approved.");
                     System.out.println("------------------------------");
                     break;
                 case 2:
-                    selectedWithdrawal.reject();
+                    selectedWithdrawal.reject(data);
                     System.out.println("Withdrawal request rejected.");
                     System.out.println("------------------------------");
                     break;

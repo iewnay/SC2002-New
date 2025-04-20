@@ -122,7 +122,7 @@ public class ApplicantInterface {
         // VIEW APPLICATION
         if (applicant.hasApplication()) {
             System.out.println(applicant.getApplication());
-            if (applicant.getApplication().getStatus() == Status.Successful) {
+            if (applicant.getApplication().getStatus() == Status.Successful && applicant.getBooking() == null) {
                 System.out.println("Would you like to book flat? (Y/N)");
                 String choice = sc.nextLine().toLowerCase();
                 if (choice.equals("y")) {

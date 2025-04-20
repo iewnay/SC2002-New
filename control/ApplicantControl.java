@@ -37,9 +37,13 @@ public class ApplicantControl {
             if (selectedProject != null) {
                 // Option to select unit type only if married
                 UnitType selectedUnit;
-                if (applicant.getMaritalStatus() == MaritalStatus.Married)
+                if (applicant.getMaritalStatus() == MaritalStatus.Married) {
                     selectedUnit = ArrayControl.selectUnitType(selectedProject, sc);
-                else
+                    if (selectedUnit == null) {
+                        System.out.println("------------------------------");
+                        return;
+                    }
+                } else
                     selectedUnit = UnitType.TWO_ROOM;
                 Application application = new Application(applicant, selectedProject, selectedUnit);
                 data.getApplicationList().add(application);

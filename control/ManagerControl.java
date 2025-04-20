@@ -126,7 +126,7 @@ public class ManagerControl {
             }
             if (!openingDate.isAfter(closingDate)) {
                 System.out.print("Officer Slots (Max 10)\t\t: ");
-                int officerSlots = Math.abs(sc.nextInt());
+                int officerSlots = Integer.parseInt(sc.nextLine());
                 if (officerSlots <= 10) {
                     if (manager.createProject(name, neighbourhood,
                             units, openingDate, closingDate, true, officerSlots, data.getProjectList())) {

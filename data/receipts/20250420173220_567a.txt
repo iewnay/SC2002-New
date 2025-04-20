@@ -1,0 +1,14 @@
+NRIC		: A1234567A
+Name		: Applicant A
+Age		: 26
+Marital Status	: Married
+Flat Type	:2-Room
+Project	: Project A
+Neighbourhood	: HougangProject Name		: Project A
+Neighbourhood		: Hougang
+2-Room Flats Available	: 34
+2-Room Selling Price	: $300000.0
+3-Room Flats Available	: 48
+3-Room Selling Price	: $450000.0
+Open Date:		: 2025-01-01
+Close Date:		: 2025-06-01
