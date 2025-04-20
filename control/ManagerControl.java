@@ -126,17 +126,21 @@ public class ManagerControl {
             }
             if (!openingDate.isAfter(closingDate)) {
                 System.out.print("Officer Slots (Max 10)\t\t: ");
-                int officerSlots = Integer.parseInt(sc.nextLine());
-                if (officerSlots <= 10) {
-                    if (manager.createProject(name, neighbourhood,
-                            units, openingDate, closingDate, true, officerSlots, data.getProjectList())) {
-                        System.out.println("Project created successfully!");
+                try {
+                    int officerSlots = Integer.parseInt(sc.nextLine());
+                    if (officerSlots <= 10) {
+                        if (manager.createProject(name, neighbourhood,
+                                units, openingDate, closingDate, true, officerSlots, data.getProjectList())) {
+                            System.out.println("Project created successfully!");
+                        } else {
+                            System.out.println(
+                                    "There is a clash in dates! Please double check your existing projects before creating a new one.");
+                        }
                     } else {
-                        System.out.println(
-                                "There is a clash in dates! Please double check your existing projects before creating a new one.");
+                        System.out.println("Officer slots exceeded 10. Please try again.");
                     }
-                } else {
-                    System.out.println("Officer slots exceeded 10. Please try again.");
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid input.");
                 }
             } else {
                 System.out.println("Error! Opening date is after closing date. Please try again.");
@@ -232,7 +236,7 @@ public class ManagerControl {
         String formattedDateTime = now.format(formatter);
 
         String filename = formattedDateTime + "_" + project.getName() + ".txt";
-        
+
         // Write to file
         try (FileWriter writer = new FileWriter(REPORT_FILEPATH + filename)) {
             writer.write(report);
