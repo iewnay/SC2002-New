@@ -13,7 +13,23 @@ import control.ManagerControl;
 import control.ArrayControl;
 import control.CustomSortControl;
 
+/**
+ * The ManagerInterface class provides a user interface for a manager to manage
+ * projects, enquiries, applications, and withdrawal requests.
+ * It includes options to view and modify projects, approve or reject
+ * applications and withdrawals, and handle enquiries.
+ */
 public class ManagerInterface {
+
+    /**
+     * Displays the manager menu and processes the manager's choice.
+     * The manager can view all projects, all enquiries, their own projects, view
+     * withdrawal requests, and manage account settings.
+     *
+     * @param manager the manager object for whom the menu is displayed
+     * @param sc      the scanner object to read user input
+     * @param data    the data object containing the application data
+     */
     public static void showMenu(Manager manager, Scanner sc, Data data) {
         int choice = -1;
         while (choice != 0) {
@@ -69,6 +85,14 @@ public class ManagerInterface {
         }
     }
 
+    /**
+     * Displays the menu for managing the manager's projects.
+     * Allows sorting, selecting, and creating projects.
+     *
+     * @param manager the manager object for whom the project menu is displayed
+     * @param sc      the scanner object to read user input
+     * @param data    the data object containing the application data
+     */
     public static void projectMenu(Manager manager, Scanner sc, Data data) {
         System.out.println();
         System.out.println("| Your Projects |");
@@ -115,6 +139,17 @@ public class ManagerInterface {
         }
     }
 
+    /**
+     * Displays the menu for managing a selected project.
+     * Allows the manager to toggle visibility, edit, delete, view registrations,
+     * applications, and enquiries,
+     * and generate reports for the project.
+     *
+     * @param project the selected project to manage
+     * @param manager the manager object for whom the project menu is displayed
+     * @param sc      the scanner object to read user input
+     * @param data    the data object containing the application data
+     */
     public static void selectedProjectMenu(Project project, Manager manager, Scanner sc, Data data) {
         System.out.println();
         System.out.println(project.toString(true));
@@ -201,6 +236,14 @@ public class ManagerInterface {
         }
     }
 
+    /**
+     * Displays the withdrawal menu and allows the manager to approve or reject
+     * withdrawal requests.
+     *
+     * @param manager the manager object for whom the withdrawal menu is displayed
+     * @param sc      the scanner object to read user input
+     * @param data    the data object containing the application data
+     */
     public static void withdrawalMenu(Manager manager, Scanner sc, Data data) {
         System.out.println();
         Withdrawal selectedWithdrawal = ArrayControl.selectFromList(data.getWithdrawals(), sc);

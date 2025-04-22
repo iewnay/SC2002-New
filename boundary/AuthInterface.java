@@ -6,9 +6,21 @@ import shared.Data;
 
 import java.util.Scanner;
 
+/**
+ * The AuthInterface class provides a user interface for user authentication,
+ * including login and registration functionalities. It allows users to log in,
+ * register a new account, or quit the application.
+ */
 public class AuthInterface {
 
-    // UI for login / registration
+    /**
+     * Displays the login and registration menu, and processes the user's choice.
+     * The user can either log in, register, or quit the application.
+     *
+     * @param sc the scanner object to read user input
+     * @param data the data object containing the application data
+     * @return a User object if the login is successful, or null if the user quits
+     */
     public static User authenticate(Scanner sc, Data data) {
         int loginChoice = -1;
         while (loginChoice != 0) {
@@ -51,6 +63,14 @@ public class AuthInterface {
         return null;
     }
 
+    /**
+     * Prompts the user for their NRIC and password and attempts to log them in.
+     * If the login is successful, returns the User object; otherwise, returns null.
+     *
+     * @param sc the scanner object to read user input
+     * @param data the data object containing user data
+     * @return a User object if login is successful, otherwise null
+     */
     public static User loginUser(Scanner sc, Data data) {
         System.out.println();
         System.out.print("NRIC: ");
@@ -62,6 +82,13 @@ public class AuthInterface {
         return user;
     }
 
+    /**
+     * Prompts the user to register a new account by entering their details.
+     * If registration is successful, the user's details are saved in the system.
+     *
+     * @param sc the scanner object to read user input
+     * @param data the data object containing user data
+     */
     public static void registerUser(Scanner sc, Data data) {
         System.out.println();
         System.out.print("NRIC: ");

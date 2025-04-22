@@ -6,7 +6,12 @@ import java.util.List;
 
 import entity.*;
 
+/**
+ * A Data Transfer Object (DTO), or container, for data collections.
+ * Stores lists of managers, officers, applicants, projects, and entity objects.
+ */
 public class Data implements Serializable {
+
     // Attributes
     private List<Manager> managerList = new ArrayList<>();
     private List<Officer> officerList = new ArrayList<>();
@@ -66,30 +71,58 @@ public class Data implements Serializable {
     }
 
     // Methods
+
+    /**
+     * Adds a manager code to the list if it does not already exist.
+     *
+     * @param code The manager code to add.
+     */
     public void addManagerCode(String code) {
         if (!managerCodes.contains(code)) {
             managerCodes.add(code);
         }
     }
 
+    /**
+     * Removes a manager code from the list if it exists.
+     *
+     * @param code The manager code to remove.
+     */
     public void removeManagerCode(String code) {
         if (managerCodes.contains(code)) {
             managerCodes.remove(code);
         }
     }
 
+    /**
+     * Adds an officer code to the list if it does not already exist.
+     *
+     * @param code The officer code to add.
+     */
     public void addOfficerCode(String code) {
         if (!officerCodes.contains(code)) {
             officerCodes.add(code);
         }
     }
 
+    /**
+     * Removes an officer code from the list if it exists.
+     *
+     * @param code The officer code to remove.
+     */
     public void removeOfficerCode(String code) {
         if (officerCodes.contains(code)) {
             officerCodes.remove(code);
         }
     }
 
+    /**
+     * Checks the type of a given code.
+     *
+     * @param code The code to check.
+     * @return "Manager" if the code is a manager code, "Officer" if it's an officer
+     *         code, default "Applicant".
+     */
     public String checkCode(String code) {
         if (managerCodes.contains(code))
             return "Manager";
@@ -98,14 +131,29 @@ public class Data implements Serializable {
         return "Applicant";
     }
 
+    /**
+     * Adds a manager to the manager list.
+     *
+     * @param manager The manager to add.
+     */
     public void addManager(Manager manager) {
         managerList.add(manager);
     }
 
+    /**
+     * Adds an officer to the officer list.
+     *
+     * @param officer The officer to add.
+     */
     public void addOfficer(Officer officer) {
         officerList.add(officer);
     }
 
+    /**
+     * Adds an applicant to the applicant list.
+     *
+     * @param applicant The applicant to add.
+     */
     public void addApplicant(Applicant applicant) {
         applicantList.add(applicant);
     }

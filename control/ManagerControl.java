@@ -19,9 +19,32 @@ import java.time.format.DateTimeFormatter;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * The ManagerControl class manages functionalities for a Manager, such as
+ * creating, editing, deleting projects,
+ * and generating reports for projects. It provides methods to interact with
+ * projects, including setting project
+ * parameters, filtering applications, and generating reports based on specific
+ * criteria.
+ */
 public class ManagerControl {
+
+    /**
+     * The file path where the report files are saved.
+     */
     public static final String REPORT_FILEPATH = "./data/reports/";
 
+    /**
+     * Edits an existing project by updating its details such as project name,
+     * neighbourhood, available units,
+     * opening and closing dates, and officer slots. This method ensures that the
+     * opening date is not after the closing date,
+     * and officer slots do not exceed the maximum allowed.
+     *
+     * @param manager the manager editing the project
+     * @param project the project to be edited
+     * @param sc      the scanner object used to capture user input
+     */
     public static void editProject(Manager manager, Project project, Scanner sc) {
         System.out.println("Enter project information:");
         System.out.print("Project name\t\t\t: ");
@@ -84,6 +107,17 @@ public class ManagerControl {
         }
     }
 
+    /**
+     * Creates a new project by taking input for project details such as project
+     * name, neighbourhood,
+     * available units, opening and closing dates, and officer slots. It ensures
+     * that the opening date is not after the closing date,
+     * and officer slots do not exceed the maximum allowed.
+     *
+     * @param manager the manager creating the project
+     * @param sc      the scanner object used to capture user input
+     * @param data    the data object containing the list of projects
+     */
     public static void createProject(Manager manager, Scanner sc, Data data) {
         System.out.println("Enter project information:");
         System.out.print("Project name\t\t\t: ");
@@ -150,12 +184,29 @@ public class ManagerControl {
         }
     }
 
+    /**
+     * Deletes the specified project and removes it from the data. The project is
+     * then set to null.
+     *
+     * @param project the project to be deleted
+     * @param data    the data object containing the project list
+     */
     public static void deleteProject(Project project, Data data) {
         project.deleteProject(data);
         project = null;
         System.out.println("Project Deleted");
     }
 
+    /**
+     * Generates a report for the specified project, allowing the user to filter the
+     * applications based on criteria such as
+     * flat type, age range, and marital status. The generated report is saved as a
+     * text file with a timestamped filename.
+     *
+     * @param project the project for which the report is generated
+     * @param sc      the scanner object used to capture user input for filtering
+     *                and generating the report
+     */
     public static void generateReport(Project project, Scanner sc) {
         String report = "";
         report += "| Report for Project |\n";

@@ -1,12 +1,18 @@
 package entity;
 
 import java.io.Serializable;
-
 import enums.MaritalStatus;
 
+/**
+ * Abstract class representing a user in the system.
+ * Includes personal information and sorting preferences.
+ * Acts as template for all user classes: Applicant, Officer, Manager.
+ */
 public abstract class User implements Serializable {
+
     public static final String fileName = null;
-    // Parameters
+
+    // Attributes
     private String NRIC;
     private String password;
     private String name;
@@ -16,6 +22,15 @@ public abstract class User implements Serializable {
     private boolean reverseSort;
 
     // Constructor
+
+    /**
+     * Constructs a User with basic personal information and default settings.
+     *
+     * @param NRIC          The NRIC of the user.
+     * @param name          The name of the user.
+     * @param age           The age of the user.
+     * @param maritalStatus The marital status of the user.
+     */
     public User(String NRIC, String name, int age, MaritalStatus maritalStatus) {
         this.NRIC = NRIC;
         this.password = "password";
@@ -26,7 +41,7 @@ public abstract class User implements Serializable {
         this.reverseSort = false;
     }
 
-    // Getters Setters
+    // Getters and Setters
     public String getNRIC() {
         return this.NRIC;
     }
@@ -51,24 +66,44 @@ public abstract class User implements Serializable {
         return this.reverseSort;
     }
 
+    // Methods
+
+    /**
+     * Toggles the reverse sort setting.
+     */
     public void reverseSort() {
         this.reverseSort = !this.reverseSort;
     }
 
+    /**
+     * Resets sorting preferences to default.
+     */
     public void clearSort() {
         this.sortSetting = 1;
         this.reverseSort = false;
     }
 
-    // Methods
+    /**
+     * Attempts to log in the user with the given password.
+     *
+     * @param password The password to verify.
+     * @return true if the password is correct, false otherwise.
+     */
     public boolean login(String password) {
         if (password.equals(this.password)) {
-            System.out.println("Logged in successfuly. Welcome " + this.name + "!");
+            System.out.println("Logged in successfully. Welcome " + this.name + "!");
             return true;
         }
         return false;
     }
 
+    /**
+     * Changes the user's password if the old password matches.
+     *
+     * @param oldPassword The current password.
+     * @param newPassword The new password to set.
+     * @return true if the password was changed, false otherwise.
+     */
     public boolean changePassword(String oldPassword, String newPassword) {
         if (this.password.equals(oldPassword)) {
             this.password = newPassword;
@@ -78,18 +113,32 @@ public abstract class User implements Serializable {
         }
     }
 
+    /**
+     * Checks if the user is married.
+     *
+     * @return true if the marital status is Married, false otherwise.
+     */
     public boolean isMarried() {
         return this.maritalStatus == MaritalStatus.Married;
     }
 
-    public void deleteAccount() {
-    }
-
+    /**
+     * Returns the user's name as the default string representation.
+     *
+     * @return The name of the user.
+     */
     @Override
     public String toString() {
         return toString(false);
     }
 
+    /**
+     * Returns a detailed or simple string representation of the user.
+     *
+     * @param showDetails If true, includes full user information; otherwise, just
+     *                    the name.
+     * @return The formatted string representation.
+     */
     public String toString(boolean showDetails) {
         if (showDetails) {
             String s = "";

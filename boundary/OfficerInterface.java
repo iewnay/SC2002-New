@@ -12,7 +12,24 @@ import control.CustomSortControl;
 import shared.Data;
 import enums.Status;
 
+/**
+ * The OfficerInterface class provides a user interface for officers to manage
+ * their assigned projects,
+ * handle applicants, manage enquiries, and confirm bookings.
+ * It allows officers to view and manage projects, generate receipts, and handle
+ * account settings.
+ */
 public class OfficerInterface {
+
+    /**
+     * Displays the officer menu and processes the officer's choice.
+     * The officer can view assigned projects, handle applicants, and manage account
+     * settings.
+     *
+     * @param officer the officer object for whom the menu is displayed
+     * @param sc      the scanner object to read user input
+     * @param data    the data object containing the application data
+     */
     public static void showMenu(Officer officer, Scanner sc, Data data) {
 
         int choice = -1;
@@ -57,6 +74,14 @@ public class OfficerInterface {
         }
     }
 
+    /**
+     * Displays the menu for managing the officer's assigned projects.
+     * Allows the officer to view, sort, register for, and manage projects.
+     *
+     * @param officer the officer object for whom the project menu is displayed
+     * @param sc      the scanner object to read user input
+     * @param data    the data object containing the application data
+     */
     public static void projectsMenu(Officer officer, Scanner sc, Data data) {
         System.out.println();
         System.out.println("| Assigned Projects |");
@@ -100,6 +125,16 @@ public class OfficerInterface {
         }
     }
 
+    /**
+     * Displays the menu for managing a selected project.
+     * Allows the officer to view enquiries, applications, bookings, and generate
+     * receipts for the project.
+     *
+     * @param project the selected project to manage
+     * @param officer the officer object for whom the project menu is displayed
+     * @param sc      the scanner object to read user input
+     * @param data    the data object containing the application data
+     */
     public static void selectedProjectMenu(Project project, Officer officer, Scanner sc, Data data) {
         System.out.println();
         System.out.println(project.toString(true));

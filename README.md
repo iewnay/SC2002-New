@@ -36,3 +36,6 @@ https://code.visualstudio.com/docs/languages/java
 3. In VSC, your root directory should have a singular BTOApp.java file and few folders with java class files inside them.
 4. Press f5 to run the program.
 5. See note above if you receive Data file not found error.
+
+Final node:
+Javadoc is generated, open ./html/index.html

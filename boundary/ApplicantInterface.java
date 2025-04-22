@@ -13,7 +13,22 @@ import entity.Enquiry;
 import shared.Data;
 import enums.Status;
 
+/**
+ * The ApplicantInterface class provides a menu-driven interface for applicants 
+ * to interact with the system. It allows them to view projects, their applications,
+ * their enquiries, request withdrawals, and manage their account settings.
+ */
 public class ApplicantInterface {
+
+    /**
+     * Displays the main menu for the applicant and processes their selection 
+     * to navigate between different functionalities such as viewing projects, 
+     * viewing applications, managing enquiries, and account settings.
+     *
+     * @param applicant the current applicant
+     * @param sc the scanner object to read user input
+     * @param data the data object that stores all the relevant data
+     */
     public static void showMenu(Applicant applicant, Scanner sc, Data data) {
         int choice = -1;
         while (choice != 0) {
@@ -74,6 +89,14 @@ public class ApplicantInterface {
         }
     }
 
+    /**
+     * Displays the available projects that the applicant can view, sort, apply for, 
+     * or enquire about. Provides options to sort, apply, or enquire based on the user's selection.
+     *
+     * @param applicant the current applicant
+     * @param sc the scanner object to read user input
+     * @param data the data object that contains project information
+     */
     public static void viewProjects(Applicant applicant, Scanner sc, Data data) {
         // VIEW PROJECTS
         System.out.println();
@@ -118,6 +141,14 @@ public class ApplicantInterface {
         }
     }
 
+    /**
+     * Displays the applicant's current application details. If the application is successful
+     * and the applicant has not yet booked a flat, it offers the option to book a flat.
+     *
+     * @param applicant the current applicant
+     * @param sc the scanner object to read user input
+     * @param data the data object that stores all relevant data
+     */
     public static void viewApplication(Applicant applicant, Scanner sc, Data data) {
         // VIEW APPLICATION
         if (applicant.hasApplication()) {
@@ -135,6 +166,13 @@ public class ApplicantInterface {
         System.out.println("------------------------------");
     }
 
+    /**
+     * Displays the applicant's existing enquiries and provides options to edit or delete an enquiry.
+     *
+     * @param applicant the current applicant
+     * @param sc the scanner object to read user input
+     * @param data the data object that stores enquiry information
+     */
     public static void viewEnquiries(Applicant applicant, Scanner sc, Data data) {
         if (Enquiry.viewEnquiries(applicant.getEnquiries())) {
             System.out.println();

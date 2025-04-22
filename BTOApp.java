@@ -11,8 +11,21 @@ import entity.Officer;
 import entity.Applicant;
 import shared.Data;
 
+/**
+ * {@code BTOApp} class serves as the main entry point for the BTO system
+ * application.
+ * The application utilizes a Data Transfer Object (DTO) to maintain application
+ * data, which is loaded at startup and saved at logout.
+ */
 // Main class, calls interfaces from boundary classes after login
 public class BTOApp {
+
+    /**
+     * Main method starts the application.
+     * Initialize necessary data.
+     * Handle user authentication.
+     * Display UI menu based on user role.
+     */
     public static void main(String[] args) {
         // Initialize data transfer object - Stores all Objects / Convrete classes used
         Data dataDTO = Initialize.initializeData();
